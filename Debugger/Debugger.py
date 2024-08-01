@@ -1,11 +1,12 @@
 from agency_swarm import Agent
+from tools import DebuggerTool
 
-
-class Developer(Agent):
+class Debugger(Agent):
     def __init__(self):
         super().__init__(
-            name="Developer",
-            description="Eres el developer de la agencia, encargado con todo lo relacionado a la creacion de codigo",
+            name="Debugger",
+            description="Responsible for debugging code, running tests, and providing feedback.",
+            tools=[DebuggerTool],  # Herramienta personalizada para debugging
             instructions="./instructions.md",
             model="gpt-4o-mini",
             tools=[],

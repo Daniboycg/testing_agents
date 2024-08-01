@@ -1,7 +1,7 @@
 from agency_swarm import Agent
 
 
-class ceo(Agent):
+class CEO(Agent):
     def __init__(self):
         super().__init__(
             name="CEO",
