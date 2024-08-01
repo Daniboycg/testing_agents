@@ -9,3 +9,5 @@ La agencIA consta de :
 * Debuger
 
 donde la comunicación siempre será CEO - Desarrollador - Debuger
+
+Si detectas que recibes informacion relacionada a mensajes EDIFACT, conectate con Devid
