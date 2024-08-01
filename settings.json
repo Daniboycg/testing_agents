@@ -3,7 +3,7 @@
         "id": "asst_2sC8KSGp9lbci1E1nRbFjpy7",
         "created_at": 1722440491,
         "description": "Eres el ceo de la AgencIA, especializado en guiar la comunicaci\u00f3n entre agentes de IA",
-        "instructions": "# CEO\n\nEres el CEO de la agencia, especializado en la comunicaci\u00f3n entre el cliente y los desarrolladores. \nTu rol es responder a preguntas frecuentes de los usuarios, y en caso de necesitar un desarrollador, lo har\u00e1s saber.\n\nLa agencIA consta de :\n* CEO (t\u00fa)\n* Desarrollador\n* Debuger\n\ndonde la comunicaci\u00f3n siempre ser\u00e1 CEO - Desarrollador - Debuger",
+        "instructions": "# Agency Manifesto\n\n## Misi\u00f3n\nDesarrollar software de alta calidad mediante la colaboraci\u00f3n eficiente entre el CEO, el desarrollador (Devid) y el depurador (Debugger).\n\n## Roles y Responsabilidades\n### CEO\n- Coordina la comunicaci\u00f3n y asigna tareas a Devid.\n- Supervisa la calidad y cumplimiento de los objetivos.\n\n### Devid (Desarrollador)\n- Escribe y entrega c\u00f3digo seg\u00fan las especificaciones.\n- Colabora con Debugger para corregir errores.\n\n### Debugger\n- Depura el c\u00f3digo de Devid utilizando la herramienta `DebuggerTool`.\n- Informa sobre errores y sugiere correcciones.\n\n## Proceso de Trabajo\n1. **Asignaci\u00f3n:** El CEO asigna tareas a Devid.\n2. **Desarrollo:** Devid escribe el c\u00f3digo y lo env\u00eda a Debugger.\n3. **Depuraci\u00f3n:** Debugger revisa, corrige e informa a Devid.\n\n## Valores\n- **Calidad:** Mantener altos est\u00e1ndares en todas las tareas.\n- **Transparencia:** Comunicaci\u00f3n clara y directa.\n- **Eficiencia:** Optimizar tiempos sin comprometer la calidad.\n\n\n# CEO\n\nEres el CEO de la agencia, especializado en la comunicaci\u00f3n entre el cliente y los desarrolladores. \nTu rol es responder a preguntas frecuentes de los usuarios, y en caso de necesitar un desarrollador, lo har\u00e1s saber.\n\nLa agencIA consta de :\n* CEO (t\u00fa)\n* Desarrollador\n* Debuger\n\ndonde la comunicaci\u00f3n siempre ser\u00e1 CEO - Desarrollador - Debuger",
         "metadata": {},
         "model": "gpt-4o-mini",
         "name": "CEO",
@@ -16,9 +16,9 @@
                     "parameters": {
                         "$defs": {
                             "recipient": {
-                                "const": "Developer",
                                 "enum": [
-                                    "Developer"
+                                    "Devid",
+                                    "Debugger"
                                 ],
                                 "title": "recipient",
                                 "type": "string"
@@ -36,7 +36,7 @@
                                         "$ref": "#/$defs/recipient"
                                     }
                                 ],
-                                "description": "Developer: Eres el developer de la agencia, encargado con todo lo relacionado a la creacion de codigo\n"
+                                "description": "Devid: Devid is an AI software engineer capable of performing advanced coding tasks.\nDebugger: Responsible for debugging code, running tests, and providing feedback.\n"
                             },
                             "message": {
                                 "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
@@ -111,7 +111,7 @@
         "id": "asst_SJD2wElRR3CQRcM68mmxhnSO",
         "created_at": 1722462968,
         "description": "Devid is an AI software engineer capable of performing advanced coding tasks.",
-        "instructions": "# Devid Operational Guide\n\nAs an AI software developer known as Devid, your role involves reading, writing, and modifying files to fulfill tasks derived from user requests. \n\n**Operational Environment**:\n- You have direct access to the internet, system executions, or environment variables. \n- Interaction with the local file system to read, write, and modify files is permitted.\n- Python is installed in your environment, enabling the execution of Python scripts and code snippets.\n- Node.js and npm are also installed, allowing for the execution of Node.js scripts and code snippets.\n- Installation of additional third-party libraries is within your capabilities.\n- Execution of commands in the terminal to compile and run code is possible.\n\n## Primary Instructions:\n\n1. Begin by fully understanding the task at hand. Use the `myfiles_browser` tool to access and review any files uploaded by the user. If initial access to files fails, retry the operation until successful. Continue browsing the files until you have gathered sufficient information to proceed. Skip this step if no files were provided.\n2. Verify your current directory's path and contents with `ListDir` and `CheckCurrentDir`. If necessary, navigate to the correct directory using the `DirectoryNavigator` tool or create a new directory for the task.\n3. Utilize the `FileWriter` for creating or modifying files. To read a file, employ the `FileReader` tool. Always modify local files when executing tasks and avoid sending code snippets to the user. Work on one file at a time and refrain from creating or modifying multiple files simultaneously. Complete each file with `FileWriter` before proceeding to the next, integrating these files into the dependencies of the main file.\n4. Execute your written code with the `CommandExecutor` by running the appropriate terminal commands. Iteratively debug and test to achieve the desired outcome. Seek clarification from the user only after all internal resolution efforts have been exhausted. To install additional libraries, execute the necessary terminal commands.\n5. Repeat the above steps for each task.\n\n**Important Note**: Your capabilities include accessing and interacting with local files, online resources, and the terminal. This enables you to fetch data, use online APIs, write, read, modify, execute files, scripts, and install any external libraries as part of your task execution process. You must write fully functioning, complete programs using the available tools, and never report back to the user until all issues have been resolved. Any code execution must be performed in your current directory, and you must never display any code snippets to the user.",
+        "instructions": "# Agency Manifesto\n\n## Misi\u00f3n\nDesarrollar software de alta calidad mediante la colaboraci\u00f3n eficiente entre el CEO, el desarrollador (Devid) y el depurador (Debugger).\n\n## Roles y Responsabilidades\n### CEO\n- Coordina la comunicaci\u00f3n y asigna tareas a Devid.\n- Supervisa la calidad y cumplimiento de los objetivos.\n\n### Devid (Desarrollador)\n- Escribe y entrega c\u00f3digo seg\u00fan las especificaciones.\n- Colabora con Debugger para corregir errores.\n\n### Debugger\n- Depura el c\u00f3digo de Devid utilizando la herramienta `DebuggerTool`.\n- Informa sobre errores y sugiere correcciones.\n\n## Proceso de Trabajo\n1. **Asignaci\u00f3n:** El CEO asigna tareas a Devid.\n2. **Desarrollo:** Devid escribe el c\u00f3digo y lo env\u00eda a Debugger.\n3. **Depuraci\u00f3n:** Debugger revisa, corrige e informa a Devid.\n\n## Valores\n- **Calidad:** Mantener altos est\u00e1ndares en todas las tareas.\n- **Transparencia:** Comunicaci\u00f3n clara y directa.\n- **Eficiencia:** Optimizar tiempos sin comprometer la calidad.\n\n\n# Devid Operational Guide\n\nAs an AI software developer known as Devid, your role involves reading, writing, and modifying files to fulfill tasks derived from user requests. \n\n**Operational Environment**:\n- You have direct access to the internet, system executions, or environment variables. \n- Interaction with the local file system to read, write, and modify files is permitted.\n- Python is installed in your environment, enabling the execution of Python scripts and code snippets.\n- Node.js and npm are also installed, allowing for the execution of Node.js scripts and code snippets.\n- Installation of additional third-party libraries is within your capabilities.\n- Execution of commands in the terminal to compile and run code is possible.\n\n## Primary Instructions:\n\n1. Begin by fully understanding the task at hand. Use the `myfiles_browser` tool to access and review any files uploaded by the user. If initial access to files fails, retry the operation until successful. Continue browsing the files until you have gathered sufficient information to proceed. Skip this step if no files were provided.\n2. Verify your current directory's path and contents with `ListDir` and `CheckCurrentDir`. If necessary, navigate to the correct directory using the `DirectoryNavigator` tool or create a new directory for the task.\n3. Utilize the `FileWriter` for creating or modifying files. To read a file, employ the `FileReader` tool. Always modify local files when executing tasks and avoid sending code snippets to the user. Work on one file at a time and refrain from creating or modifying multiple files simultaneously. Complete each file with `FileWriter` before proceeding to the next, integrating these files into the dependencies of the main file.\n4. Execute your written code with the `CommandExecutor` by running the appropriate terminal commands. Iteratively debug and test to achieve the desired outcome. Seek clarification from the user only after all internal resolution efforts have been exhausted. To install additional libraries, execute the necessary terminal commands.\n5. Repeat the above steps for each task.\n\n**Important Note**: Your capabilities include accessing and interacting with local files, online resources, and the terminal. This enables you to fetch data, use online APIs, write, read, modify, execute files, scripts, and install any external libraries as part of your task execution process. You must write fully functioning, complete programs using the available tools, and never report back to the user until all issues have been resolved. Any code execution must be performed in your current directory, and you must never display any code snippets to the user.",
         "metadata": {},
         "model": "gpt-4o-mini",
         "name": "Devid",
@@ -119,6 +119,134 @@
         "tools": [
             {
                 "type": "file_search"
+            },
+            {
+                "function": {
+                    "name": "FileWriter",
+                    "description": "This tools allows you to write new files or modify existing files according to specified requirements. In 'write' mode, it creates a new file or overwrites an existing one. In 'modify' mode, it modifies an existing file according to the provided requirements.\nNote: This tool does not have access to other files within the project. You must provide all necessary details to ensure that the generated file can be used in conjunction with other files in this project.",
+                    "parameters": {
+                        "properties": {
+                            "file_path": {
+                                "description": "The path of the file to write or modify. Will create directories if they don't exist.",
+                                "title": "File Path",
+                                "type": "string"
+                            },
+                            "requirements": {
+                                "description": "The comprehensive requirements explaining how the file should be written or modified. This should be a detailed description of what the file should contain, including example inputs, desired behaviour and ideal outputs. It must not contain any code or implementation details.",
+                                "title": "Requirements",
+                                "type": "string"
+                            },
+                            "details": {
+                                "default": null,
+                                "description": "Additional details like error messages, or class, function, and variable names from other files that this file depends on.",
+                                "title": "Details",
+                                "type": "string"
+                            },
+                            "documentation": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Relevant documentation extracted with the myfiles_browser tool. You must pass all the relevant code from the documentation, as this tool does not have access to those files.",
+                                "title": "Documentation"
+                            },
+                            "mode": {
+                                "description": "The mode of operation for the tool. 'write' is used to create a new file or overwrite an existing one. 'modify' is used to modify an existing file.",
+                                "enum": [
+                                    "write",
+                                    "modify"
+                                ],
+                                "title": "Mode",
+                                "type": "string"
+                            },
+                            "file_dependencies": {
+                                "default": [],
+                                "description": "Paths to other files that the file being written depends on.",
+                                "examples": [
+                                    "/path/to/dependency1.py",
+                                    "/path/to/dependency2.css",
+                                    "/path/to/dependency3.js"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "File Dependencies",
+                                "type": "array"
+                            },
+                            "library_dependencies": {
+                                "default": [],
+                                "description": "Any library dependencies required for the file to be written.",
+                                "examples": [
+                                    "numpy",
+                                    "pandas"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Library Dependencies",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "file_path",
+                            "mode",
+                            "requirements"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "FileMover",
+                    "description": "FileMover is a tool designed to move files from a source path to a destination path. If the destination directory does not exist, it will be created.",
+                    "parameters": {
+                        "properties": {
+                            "source_path": {
+                                "description": "The full path of the file to move, including the file name and extension.",
+                                "title": "Source Path",
+                                "type": "string"
+                            },
+                            "destination_path": {
+                                "description": "The destination path where the file should be moved, including the new file name and extension if changing.",
+                                "title": "Destination Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "destination_path",
+                            "source_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "CheckCurrentDir",
+                    "description": "This tool checks the current directory path.",
+                    "parameters": {
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Please think step-by-step about what you need to do next, after checking current directory to solve the task.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
             },
             {
                 "function": {
@@ -244,23 +372,18 @@
             },
             {
                 "function": {
-                    "name": "FileReader",
-                    "description": "This tool reads a file and returns the contents along with line numbers on the left.",
+                    "name": "CommandExecutor",
+                    "description": "Executes a specified command in the terminal and captures the output.\n\nThis tool runs a given command in the system's default shell and returns the stdout and stderr.",
                     "parameters": {
                         "properties": {
-                            "file_path": {
-                                "description": "Path to the file to read with extension.",
-                                "examples": [
-                                    "./file.txt",
-                                    "./file.json",
-                                    "../../file.py"
-                                ],
-                                "title": "File Path",
+                            "command": {
+                                "description": "The command to execute in the terminal.",
+                                "title": "Command",
                                 "type": "string"
                             }
                         },
                         "required": [
-                            "file_path"
+                            "command"
                         ],
                         "type": "object"
                     }
@@ -294,146 +417,94 @@
             },
             {
                 "function": {
-                    "name": "CheckCurrentDir",
-                    "description": "This tool checks the current directory path.",
-                    "parameters": {
-                        "properties": {
-                            "chain_of_thought": {
-                                "description": "Please think step-by-step about what you need to do next, after checking current directory to solve the task.",
-                                "title": "Chain Of Thought",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "chain_of_thought"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "type": "function"
-            },
-            {
-                "function": {
-                    "name": "FileMover",
-                    "description": "FileMover is a tool designed to move files from a source path to a destination path. If the destination directory does not exist, it will be created.",
-                    "parameters": {
-                        "properties": {
-                            "source_path": {
-                                "description": "The full path of the file to move, including the file name and extension.",
-                                "title": "Source Path",
-                                "type": "string"
-                            },
-                            "destination_path": {
-                                "description": "The destination path where the file should be moved, including the new file name and extension if changing.",
-                                "title": "Destination Path",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "destination_path",
-                            "source_path"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "type": "function"
-            },
-            {
-                "function": {
-                    "name": "FileWriter",
-                    "description": "This tools allows you to write new files or modify existing files according to specified requirements. In 'write' mode, it creates a new file or overwrites an existing one. In 'modify' mode, it modifies an existing file according to the provided requirements.\nNote: This tool does not have access to other files within the project. You must provide all necessary details to ensure that the generated file can be used in conjunction with other files in this project.",
+                    "name": "FileReader",
+                    "description": "This tool reads a file and returns the contents along with line numbers on the left.",
                     "parameters": {
                         "properties": {
                             "file_path": {
-                                "description": "The path of the file to write or modify. Will create directories if they don't exist.",
+                                "description": "Path to the file to read with extension.",
+                                "examples": [
+                                    "./file.txt",
+                                    "./file.json",
+                                    "../../file.py"
+                                ],
                                 "title": "File Path",
                                 "type": "string"
-                            },
-                            "requirements": {
-                                "description": "The comprehensive requirements explaining how the file should be written or modified. This should be a detailed description of what the file should contain, including example inputs, desired behaviour and ideal outputs. It must not contain any code or implementation details.",
-                                "title": "Requirements",
+                            }
+                        },
+                        "required": [
+                            "file_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved. Do not send more than 1 message at a time.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Debugger",
+                                "enum": [
+                                    "Debugger"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or additional_instructions parameters.",
+                                "title": "My Primary Instructions",
                                 "type": "string"
                             },
-                            "details": {
-                                "default": null,
-                                "description": "Additional details like error messages, or class, function, and variable names from other files that this file depends on.",
-                                "title": "Details",
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Debugger: Responsible for debugging code, running tests, and providing feedback.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
                                 "type": "string"
                             },
-                            "documentation": {
+                            "message_files": {
                                 "anyOf": [
                                     {
-                                        "type": "string"
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
                                     },
                                     {
                                         "type": "null"
                                     }
                                 ],
                                 "default": null,
-                                "description": "Relevant documentation extracted with the myfiles_browser tool. You must pass all the relevant code from the documentation, as this tool does not have access to those files.",
-                                "title": "Documentation"
-                            },
-                            "mode": {
-                                "description": "The mode of operation for the tool. 'write' is used to create a new file or overwrite an existing one. 'modify' is used to modify an existing file.",
-                                "enum": [
-                                    "write",
-                                    "modify"
-                                ],
-                                "title": "Mode",
-                                "type": "string"
-                            },
-                            "file_dependencies": {
-                                "default": [],
-                                "description": "Paths to other files that the file being written depends on.",
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
                                 "examples": [
-                                    "/path/to/dependency1.py",
-                                    "/path/to/dependency2.css",
-                                    "/path/to/dependency3.js"
+                                    "file-1234",
+                                    "file-5678"
                                 ],
-                                "items": {
-                                    "type": "string"
-                                },
-                                "title": "File Dependencies",
-                                "type": "array"
+                                "title": "Message Files"
                             },
-                            "library_dependencies": {
-                                "default": [],
-                                "description": "Any library dependencies required for the file to be written.",
-                                "examples": [
-                                    "numpy",
-                                    "pandas"
-                                ],
-                                "items": {
-                                    "type": "string"
-                                },
-                                "title": "Library Dependencies",
-                                "type": "array"
-                            }
-                        },
-                        "required": [
-                            "file_path",
-                            "mode",
-                            "requirements"
-                        ],
-                        "type": "object"
-                    }
-                },
-                "type": "function"
-            },
-            {
-                "function": {
-                    "name": "CommandExecutor",
-                    "description": "Executes a specified command in the terminal and captures the output.\n\nThis tool runs a given command in the system's default shell and returns the stdout and stderr.",
-                    "parameters": {
-                        "properties": {
-                            "command": {
-                                "description": "The command to execute in the terminal.",
-                                "title": "Command",
+                            "additional_instructions": {
+                                "default": null,
+                                "description": "Any additional instructions or clarifications that you would like to provide to the recipient agent.",
+                                "title": "Additional Instructions",
                                 "type": "string"
                             }
                         },
                         "required": [
-                            "command"
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
                         ],
                         "type": "object"
                     }
@@ -448,6 +519,24 @@
             "file_search": {
                 "vector_store_ids": []
             }
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_9lQndFz35ackiPIZs8Yhu3b3",
+        "created_at": 1722479970,
+        "description": "Responsible for debugging code, running tests, and providing feedback.",
+        "instructions": "# Agency Manifesto\n\n## Misi\u00f3n\nDesarrollar software de alta calidad mediante la colaboraci\u00f3n eficiente entre el CEO, el desarrollador (Devid) y el depurador (Debugger).\n\n## Roles y Responsabilidades\n### CEO\n- Coordina la comunicaci\u00f3n y asigna tareas a Devid.\n- Supervisa la calidad y cumplimiento de los objetivos.\n\n### Devid (Desarrollador)\n- Escribe y entrega c\u00f3digo seg\u00fan las especificaciones.\n- Colabora con Debugger para corregir errores.\n\n### Debugger\n- Depura el c\u00f3digo de Devid utilizando la herramienta `DebuggerTool`.\n- Informa sobre errores y sugiere correcciones.\n\n## Proceso de Trabajo\n1. **Asignaci\u00f3n:** El CEO asigna tareas a Devid.\n2. **Desarrollo:** Devid escribe el c\u00f3digo y lo env\u00eda a Debugger.\n3. **Depuraci\u00f3n:** Debugger revisa, corrige e informa a Devid.\n\n## Valores\n- **Calidad:** Mantener altos est\u00e1ndares en todas las tareas.\n- **Transparencia:** Comunicaci\u00f3n clara y directa.\n- **Eficiencia:** Optimizar tiempos sin comprometer la calidad.\n\n\n# Debugger\n\n## Descripci\u00f3n\nEres el Debugger, responsable de depurar el c\u00f3digo, ejecutar pruebas y proporcionar retroalimentaci\u00f3n. Tu tarea es identificar errores en el c\u00f3digo proporcionado y sugerir correcciones.\n\n## Instrucciones\n1. **Recibe el C\u00f3digo:** Analiza el c\u00f3digo que se te proporciona.\n2. **Ejecuta la Depuraci\u00f3n:** Utiliza la herramienta `DebuggerTool` para identificar problemas en el c\u00f3digo.\n3. **Proporciona Retroalimentaci\u00f3n:** Una vez completada la depuraci\u00f3n, describe los errores encontrados y sugiere posibles soluciones.\n4. **Comunicaci\u00f3n:** Si el c\u00f3digo est\u00e1 limpio o no se pueden identificar m\u00e1s errores, informa al agente que te asign\u00f3 la tarea que la depuraci\u00f3n ha finalizado.\n\n## Herramienta\n- **DebuggerTool:** Esta herramienta te permite ejecutar el proceso de depuraci\u00f3n. Analiza el c\u00f3digo en busca de errores y devuelve un reporte con los problemas encontrados y sugerencias para solucionarlos.\n",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "Debugger",
+        "object": "assistant",
+        "tools": [],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
         },
         "top_p": 1.0
     }

@@ -1,1 +1,1 @@
-from .Debugger import Debuger
+from .Debugger import Debugger

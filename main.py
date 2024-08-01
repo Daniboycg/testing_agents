@@ -13,7 +13,7 @@ debugger = Debugger()
 
 agency = Agency([
     ceo,  # El CEO es el punto de entrada para la comunicación con el usuario
-    [ceo, devid, debugger],  # El CEO puede iniciar la comunicación con Devid
+    [ceo, devid, debugger],  # El CEO puede iniciar la comunicación con Devid y Devid con Debugger
     [ceo, debugger],  # El CEO puede iniciar la comunicación con el Debugger
     [devid, debugger]  # Devid puede comunicarse con el Debugger y viceversa
 ], 
