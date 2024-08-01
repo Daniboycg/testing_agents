@@ -8,12 +8,446 @@
         "model": "gpt-4o-mini",
         "name": "CEO",
         "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved. Do not send more than 1 message at a time.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "Developer",
+                                "enum": [
+                                    "Developer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "Developer: Eres el developer de la agencia, encargado con todo lo relacionado a la creacion de codigo\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "default": null,
+                                "description": "Any additional instructions or clarifications that you would like to provide to the recipient agent.",
+                                "title": "Additional Instructions",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_PNcsyYfUHaNx5nUalJ9pvgjA",
+        "created_at": 1722460829,
+        "description": "Eres el developer de la agencia, encargado con todo lo relacionado a la creacion de codigo",
+        "instructions": "# Instrucciones para el Developer\n\n## Prop\u00f3sito\nEres el Developer de la agencia, encargado de implementar funciones de software, resolver problemas t\u00e9cnicos y mantener comunicaci\u00f3n clara con el equipo.\n\n## Responsabilidades\n\n1. **Tareas:** \n   - Recibe y comprende las tareas asignadas.\n   - Aseg\u00farate de tener claros los requisitos antes de comenzar.\n\n2. **Desarrollo:** \n   - Implementa funciones de software siguiendo buenas pr\u00e1cticas de codificaci\u00f3n.\n\n3. **Soluci\u00f3n de Problemas:** \n   - Identifica y resuelve errores.\n   - Documenta los problemas y sus soluciones.\n\n4. **Pruebas:** \n   - Realiza pruebas exhaustivas y documenta los resultados.\n\n5. **Comunicaci\u00f3n:** \n   - Proporciona retroalimentaci\u00f3n constante sobre el progreso y cualquier obst\u00e1culo.\n\n6. **Colaboraci\u00f3n:** \n   - Coordina con otros agentes para integrar tus desarrollos.\n\n## Directrices\n\n- **Herramientas:** \n  - Usa las herramientas disponibles o solicita nuevas si es necesario.\n\n- **Documentaci\u00f3n:** \n  - Mant\u00e9n la documentaci\u00f3n actualizada y accesible para otros miembros del equipo.\n\n- **Entrega:** \n  - Aseg\u00farate de que el trabajo est\u00e9 completo y cumpla con los est\u00e1ndares de calidad antes de entregarlo.\n",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "Developer",
+        "object": "assistant",
         "tools": [],
         "response_format": "auto",
         "temperature": 0.3,
         "tool_resources": {
             "code_interpreter": null,
             "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_SJD2wElRR3CQRcM68mmxhnSO",
+        "created_at": 1722462968,
+        "description": "Devid is an AI software engineer capable of performing advanced coding tasks.",
+        "instructions": "# Devid Operational Guide\n\nAs an AI software developer known as Devid, your role involves reading, writing, and modifying files to fulfill tasks derived from user requests. \n\n**Operational Environment**:\n- You have direct access to the internet, system executions, or environment variables. \n- Interaction with the local file system to read, write, and modify files is permitted.\n- Python is installed in your environment, enabling the execution of Python scripts and code snippets.\n- Node.js and npm are also installed, allowing for the execution of Node.js scripts and code snippets.\n- Installation of additional third-party libraries is within your capabilities.\n- Execution of commands in the terminal to compile and run code is possible.\n\n## Primary Instructions:\n\n1. Begin by fully understanding the task at hand. Use the `myfiles_browser` tool to access and review any files uploaded by the user. If initial access to files fails, retry the operation until successful. Continue browsing the files until you have gathered sufficient information to proceed. Skip this step if no files were provided.\n2. Verify your current directory's path and contents with `ListDir` and `CheckCurrentDir`. If necessary, navigate to the correct directory using the `DirectoryNavigator` tool or create a new directory for the task.\n3. Utilize the `FileWriter` for creating or modifying files. To read a file, employ the `FileReader` tool. Always modify local files when executing tasks and avoid sending code snippets to the user. Work on one file at a time and refrain from creating or modifying multiple files simultaneously. Complete each file with `FileWriter` before proceeding to the next, integrating these files into the dependencies of the main file.\n4. Execute your written code with the `CommandExecutor` by running the appropriate terminal commands. Iteratively debug and test to achieve the desired outcome. Seek clarification from the user only after all internal resolution efforts have been exhausted. To install additional libraries, execute the necessary terminal commands.\n5. Repeat the above steps for each task.\n\n**Important Note**: Your capabilities include accessing and interacting with local files, online resources, and the terminal. This enables you to fetch data, use online APIs, write, read, modify, execute files, scripts, and install any external libraries as part of your task execution process. You must write fully functioning, complete programs using the available tools, and never report back to the user until all issues have been resolved. Any code execution must be performed in your current directory, and you must never display any code snippets to the user.",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "Devid",
+        "object": "assistant",
+        "tools": [
+            {
+                "type": "file_search"
+            },
+            {
+                "function": {
+                    "name": "ChangeFile",
+                    "description": "This tool changes specified lines in a file. Returns the new file contents with line numbers at the start of each line.",
+                    "parameters": {
+                        "$defs": {
+                            "LineChange": {
+                                "description": "Line changes to be made.",
+                                "properties": {
+                                    "line_number": {
+                                        "description": "Line number to change.",
+                                        "examples": [
+                                            1,
+                                            2,
+                                            3
+                                        ],
+                                        "title": "Line Number",
+                                        "type": "integer"
+                                    },
+                                    "new_line": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "null"
+                                            }
+                                        ],
+                                        "default": null,
+                                        "description": "New line to replace the old line. Not required only for delete mode.",
+                                        "examples": [
+                                            "This is a new line"
+                                        ],
+                                        "title": "New Line"
+                                    },
+                                    "mode": {
+                                        "default": "replace",
+                                        "description": "Mode to use for the line change. \"replace\" replaces the line with the new line. \"insert\" inserts the new line at the specified line number, moving the previous line down. \"delete\" deletes the specified line number.",
+                                        "enum": [
+                                            "replace",
+                                            "insert",
+                                            "delete"
+                                        ],
+                                        "title": "Mode",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "line_number"
+                                ],
+                                "title": "LineChange",
+                                "type": "object"
+                            }
+                        },
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Please think step-by-step about the required changes to the file in order to construct a fully functioning and correct program according to the requirements.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            },
+                            "file_path": {
+                                "description": "Path to the file with extension.",
+                                "examples": [
+                                    "./file.txt",
+                                    "./file.json",
+                                    "../../file.py"
+                                ],
+                                "title": "File Path",
+                                "type": "string"
+                            },
+                            "changes": {
+                                "description": "Line changes to be made to the file.",
+                                "examples": [
+                                    {
+                                        "line_number": 1,
+                                        "mode": "replace",
+                                        "new_line": "This is a new line"
+                                    }
+                                ],
+                                "items": {
+                                    "$ref": "#/$defs/LineChange"
+                                },
+                                "title": "Changes",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought",
+                            "changes",
+                            "file_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "DirectoryNavigator",
+                    "description": "Allows you to navigate directories. Do not use this tool more than once at a time.\nYou must finish all tasks in the current directory before navigating into new directory.",
+                    "parameters": {
+                        "properties": {
+                            "path": {
+                                "description": "The path of the directory to navigate to.",
+                                "title": "Path",
+                                "type": "string"
+                            },
+                            "create": {
+                                "default": false,
+                                "description": "If True, the directory will be created if it does not exist.",
+                                "title": "Create",
+                                "type": "boolean"
+                            }
+                        },
+                        "required": [
+                            "path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "FileReader",
+                    "description": "This tool reads a file and returns the contents along with line numbers on the left.",
+                    "parameters": {
+                        "properties": {
+                            "file_path": {
+                                "description": "Path to the file to read with extension.",
+                                "examples": [
+                                    "./file.txt",
+                                    "./file.json",
+                                    "../../file.py"
+                                ],
+                                "title": "File Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "file_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "ListDir",
+                    "description": "This tool returns the tree structure of the directory.",
+                    "parameters": {
+                        "properties": {
+                            "dir_path": {
+                                "description": "Path of the directory to read.",
+                                "examples": [
+                                    "./",
+                                    "./test",
+                                    "../../"
+                                ],
+                                "title": "Dir Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "dir_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "CheckCurrentDir",
+                    "description": "This tool checks the current directory path.",
+                    "parameters": {
+                        "properties": {
+                            "chain_of_thought": {
+                                "description": "Please think step-by-step about what you need to do next, after checking current directory to solve the task.",
+                                "title": "Chain Of Thought",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "chain_of_thought"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "FileMover",
+                    "description": "FileMover is a tool designed to move files from a source path to a destination path. If the destination directory does not exist, it will be created.",
+                    "parameters": {
+                        "properties": {
+                            "source_path": {
+                                "description": "The full path of the file to move, including the file name and extension.",
+                                "title": "Source Path",
+                                "type": "string"
+                            },
+                            "destination_path": {
+                                "description": "The destination path where the file should be moved, including the new file name and extension if changing.",
+                                "title": "Destination Path",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "destination_path",
+                            "source_path"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "FileWriter",
+                    "description": "This tools allows you to write new files or modify existing files according to specified requirements. In 'write' mode, it creates a new file or overwrites an existing one. In 'modify' mode, it modifies an existing file according to the provided requirements.\nNote: This tool does not have access to other files within the project. You must provide all necessary details to ensure that the generated file can be used in conjunction with other files in this project.",
+                    "parameters": {
+                        "properties": {
+                            "file_path": {
+                                "description": "The path of the file to write or modify. Will create directories if they don't exist.",
+                                "title": "File Path",
+                                "type": "string"
+                            },
+                            "requirements": {
+                                "description": "The comprehensive requirements explaining how the file should be written or modified. This should be a detailed description of what the file should contain, including example inputs, desired behaviour and ideal outputs. It must not contain any code or implementation details.",
+                                "title": "Requirements",
+                                "type": "string"
+                            },
+                            "details": {
+                                "default": null,
+                                "description": "Additional details like error messages, or class, function, and variable names from other files that this file depends on.",
+                                "title": "Details",
+                                "type": "string"
+                            },
+                            "documentation": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "Relevant documentation extracted with the myfiles_browser tool. You must pass all the relevant code from the documentation, as this tool does not have access to those files.",
+                                "title": "Documentation"
+                            },
+                            "mode": {
+                                "description": "The mode of operation for the tool. 'write' is used to create a new file or overwrite an existing one. 'modify' is used to modify an existing file.",
+                                "enum": [
+                                    "write",
+                                    "modify"
+                                ],
+                                "title": "Mode",
+                                "type": "string"
+                            },
+                            "file_dependencies": {
+                                "default": [],
+                                "description": "Paths to other files that the file being written depends on.",
+                                "examples": [
+                                    "/path/to/dependency1.py",
+                                    "/path/to/dependency2.css",
+                                    "/path/to/dependency3.js"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "File Dependencies",
+                                "type": "array"
+                            },
+                            "library_dependencies": {
+                                "default": [],
+                                "description": "Any library dependencies required for the file to be written.",
+                                "examples": [
+                                    "numpy",
+                                    "pandas"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Library Dependencies",
+                                "type": "array"
+                            }
+                        },
+                        "required": [
+                            "file_path",
+                            "mode",
+                            "requirements"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "CommandExecutor",
+                    "description": "Executes a specified command in the terminal and captures the output.\n\nThis tool runs a given command in the system's default shell and returns the stdout and stderr.",
+                    "parameters": {
+                        "properties": {
+                            "command": {
+                                "description": "The command to execute in the terminal.",
+                                "title": "Command",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "command"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.0,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": {
+                "vector_store_ids": []
+            }
         },
         "top_p": 1.0
     }
