@@ -118,7 +118,8 @@
         "object": "assistant",
         "tools": [
             {
-                "type": "file_search"
+                "type": "file_search",
+                "file_search": null
             },
             {
                 "function": {
